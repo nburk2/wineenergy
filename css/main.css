@@ -1,14 +1,22 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,300,800);
 
 header {
-  margin-top: 100px;
+  margin-top: 110px;
+}
+
+.top-section {
+  background-image: url(../images/backdrop.png);
+  background-repeat:no-repeat;
+  background-position:center;
+  background-attachment:fixed;
+  position: relative;
 }
 
 /*
   INDEX.html
 */
 .carousel {
-  max-height: 547px;
+  max-height: 442px;
   max-width: 100%;
 }
 
