@@ -1,0 +1,32 @@
+{
+  "name": "winotsite",
+  "version": "1.0.0",
+  "description": "wi not stop website",
+  "main": "index.html",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-minify": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace-path": "^0.4.0",
+    "merge-stream": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nburk2/winotsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nburk2/winotsite/issues"
+  },
+  "homepage": "https://github.com/nburk2/winotsite#readme"
+}
