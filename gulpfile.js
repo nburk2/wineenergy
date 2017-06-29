@@ -15,6 +15,8 @@ gulp.task('minify-css', function() {
   ];
 
   var pathsToConcat = [
+    'css/bootstrap-grid.min.css',
+    'css/bootstrap-reboot.min.css',
     'css/bootstrap.min.css',
     'css/font-awesome.min.css',
     'css/animate.min.css',
@@ -38,12 +40,12 @@ gulp.task('minify-js', function() {
 
   var pathsToMinify = [
     'js/jquery.js',
-    'js/html5shiv.js',
     'js/main.js'
   ];
 
   var pathsToConcat = [
     'js/jquery.js',
+    'js/tether.min.js',
     'js/bootstrap.min.js',
     'js/html5shiv.js',
     'js/jquery.isotope.min.js',
@@ -63,8 +65,8 @@ gulp.task('minify-js', function() {
 });
 
 gulp.task('replace-path', function() {
-  gulp.src(['index.html','about-us.html','cafe.html','careers.html','contact-us.html',
-            'locations.html','specials.html'])
+  gulp.src(['index.html','about-us.html','careers.html','contact-us.html',
+            'ourbusiness.html', 'quikserv.html', 'specials.html', 'signup.html'])
     .pipe(replace(/bootstrap\.min\.css/g, 'all.css'))
     .pipe(replace(/<link href="css\/font-awesome\.min\.css" rel="stylesheet">/g, ''))
     .pipe(replace(/<link href="css\/animate\.min\.css" rel="stylesheet">/g, ''))
@@ -88,7 +90,8 @@ gulp.task('clean', function(){
 gulp.task('move', function(){
   var filesToMove = [
         'fonts/**/*.*',
-        'images/**/*.*'
+        'images/**/*.*',
+        'css/bootstrap.min.css.map'
     ];
   // the base option sets the relative root for the set of files,
   // preserving the folder structure
