@@ -10,4 +10,4 @@
 4. install aws cli to easily push to s3 bucket
 5. aws s3 sync dist/ s3://wineenergy.wineenergyportal.com --acl public-read
 
-6. update individual file: aws s3api put-object --bucket wineenergy.wineenergyportal.com --key css/all.css --body [local-file] --acl public-read
+6. update individual file: aws s3api put-object --bucket wineenergy.wineenergyportal.com --key payonline.html --body dist/payonline.html --acl public-read
