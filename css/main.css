@@ -8,6 +8,11 @@ header nav li {
   font-size: 25px;
 }
 
+header nav li.active {
+  background-color:lightgrey;
+  border-radius:10px;
+}
+
 header nav a .main-logo {
   width: 240px;
 }
