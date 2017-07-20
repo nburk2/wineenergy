@@ -4,7 +4,7 @@
 
 #deploy
 
-1. npm init
+1. npm install
 2. gulp clean
 3. gulp build
 4. install aws cli to easily push to s3 bucket

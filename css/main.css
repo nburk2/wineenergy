@@ -13,6 +13,11 @@ header nav li.active {
   border-radius:10px;
 }
 
+header nav li:hover {
+  background-color:lightgrey;
+  border-radius:10px;
+}
+
 header nav a .main-logo {
   width: 240px;
 }
