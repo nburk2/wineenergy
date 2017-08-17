@@ -95,7 +95,6 @@
         </div>
 
         <!-- <div class="row"> -->
-          <div class="status alert alert-success" style="display: none"></div>
           <!-- <div class="col-md-12"> -->
             <form id="contact-form" class="form-control">
               <div class="row">
@@ -118,8 +117,9 @@
                         <label>Questions/Comments *</label>
                         <textarea name="message" id="message-input" required="required" class="form-control" rows="8"></textarea>
                     </div>
+                    <div id="form_status" class="status"></div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg" required="required">Submit Message</button>
+                        <button id="submitButton" type="submit" class="btn btn-primary btn-lg" required="required">Submit Message</button>
                     </div>
                 </div>
               </div>
@@ -183,6 +183,7 @@
         // Contact form
         var form = $('#contact-form');
         form.submit(function(event){
+          $("#submitButton").prop("disabled",true);
           event.preventDefault();
           var form_status = $('<div class="form_status"></div>');
           var data = {
@@ -200,13 +201,15 @@
             data: JSON.stringify(data),
 
             beforeSend: function(){
-              form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin" style="color:green;"></i> Email is sending...</p>').fadeIn() );
+              $("#form_status").html('<p><i class="fa fa-spinner fa-spin" style="color:green;"></i> Email is sending...</p>').fadeIn();
           },
           success: function (data) {
-            form_status.html('<p class="text-success"> success</p>').delay(3000).fadeOut();
+            $("#form_status").html('<p class="text-success"> success</p>').delay(3000).fadeOut();
+            $("#submitButton").prop("disabled",false);
           },
           error: function (data) {
-            form_status.html('<p class="text-danger"> message failed</p>').delay(3000).fadeOut();
+            $("#form_status").html('<p class="text-danger"> message failed</p>').delay(3000).fadeOut();
+            $("#submitButton").prop("disabled",false);
           }
           });
         });

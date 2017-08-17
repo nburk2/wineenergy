@@ -59,13 +59,13 @@
                 <a class="nav-link text-center" href="about-us.html">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="careers.html">Careers</a>
+                <a class="nav-link text-center" href="careers.html">Careers</a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="contact-us.html">Contact</a>
+              <li class="nav-item">
+                <a class="nav-link text-center" href="contact-us.html">Contact</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle text-center" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Applications
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -100,7 +100,6 @@
             <!-- <p class="lead text-primary">Provide your name, email and any questions you have for us!</p> -->
         </div>
 
-          <div class="status alert alert-success" style="display: none"></div>
             <div id="transaction"></div>
             <form class="form-control">
               <div class="row">
@@ -244,7 +243,7 @@
                   <input type="text" id="yearId" class="form-control" placeholder="YYYY" /><br><br>
                 </div>
               </div>
-
+              <div id="form_status" class="status"></div>
               <!-- On submit, cause this data to be sent to the "sendPaymentDataToAnet()" function. -->
               <button type="button" class="btn btn-primary btn-lg" id="submitButton" onclick="sendPaymentDataToAnet()">Pay</button>
           </form>
@@ -286,6 +285,7 @@
     <script type="text/javascript">
       // $(document).ready(function() {
         function sendPaymentDataToAnet() {
+            $("#submitButton").prop("disabled",true);
             var secureData = {}; authData = {}; cardData = {};
 
             // Extract the card number, expiration date, and card code.
@@ -313,6 +313,7 @@
                         console.log(response.messages.message[i].code + ": " + response.messages.message[i].text);
                     }
                     // processTransaction(response.opaqueData);
+                    $("#submitButton").prop("disabled",false);
                     alert("acceptJS library error! " + response.messages.message[0].text)
                 } else {
                     console.log(response.opaqueData.dataDescriptor);
@@ -353,16 +354,24 @@
             contentType: 'application/json',
             data: JSON.stringify(data),
 
+            beforeSend: function(){
+              $("#form_status").html('<p><i class="fa fa-spinner fa-spin" style="color:green;"></i> Email is sending...</p>').fadeIn();
+          },
           success: function (data) {
+            $("#submitButton").prop("disabled",false);
             if (data.resultCode.name == "OK") {
+              $("#form_status").html('<p class="text-success"> success</p>').delay(3000).fadeOut();
               window.location.replace("paysuccess.html");
             } else {
               console.log(data.message)
+              $("#form_status").html('<p class="text-danger"> message failed</p>').delay(3000).fadeOut();
               alert("transaction failed: " + data.message[0].text)
             }
           },
           error: function (data) {
             console.log(data.responseJSON.message)
+            $("#form_status").html('<p class="text-danger"> message failed</p>').delay(3000).fadeOut();
+            $("#submitButton").prop("disabled",false);
             alert("transaction failed: " + data.responseJSON.message)
           }
           });
