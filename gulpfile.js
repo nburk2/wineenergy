@@ -67,7 +67,8 @@ gulp.task('minify-js', function() {
 gulp.task('replace-path', function() {
   gulp.src(['index.html','about-us.html','careers.html','contact-us.html',
             'ourbusiness.html', 'quikserv.html', 'specials.html', 'signup.html',
-            'paybill.html', 'downloads.html', 'paysuccess.html', 'community.html'])
+            'paybill.html', 'downloads.html', 'paysuccess.html', 'community.html',
+            'contactsuccess.html'])
     .pipe(replace(/bootstrap\.min\.css/g, 'all.css'))
     .pipe(replace(/<link href="css\/font-awesome\.min\.css" rel="stylesheet">/g, ''))
     .pipe(replace(/<link href="css\/animate\.min\.css" rel="stylesheet">/g, ''))
