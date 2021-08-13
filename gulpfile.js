@@ -65,7 +65,7 @@ gulp.task('minify-js', function() {
 });
 
 gulp.task('replace-path', function() {
-  gulp.src(['index.html','about-us.html','careers.html','contact-us.html',
+  return gulp.src(['index.html','about-us.html','careers.html','contact-us.html',
             'ourbusiness.html', 'quikserv.html', 'specials.html', 'signup.html',
             'paybill.html', 'downloads.html', 'paysuccess.html', 'community.html',
             'contactsuccess.html'])
@@ -97,8 +97,11 @@ gulp.task('move', function(){
     ];
   // the base option sets the relative root for the set of files,
   // preserving the folder structure
-  gulp.src(filesToMove, { base: './' })
+  return gulp.src(filesToMove, { base: './' })
   .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build', ['minify-css', 'minify-js', 'replace-path', 'move'])
+// gulp.task('build', ['minify-css', 'minify-js', 'replace-path', 'move'])
+// gulp.task('scripts', gulp.series('clean', function() {...}));
+gulp.task('build',
+  gulp.series('clean', 'minify-css', 'minify-js', 'replace-path', 'move'));
